@@ -27,21 +27,28 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get("/work-time/:regionCode", function (req, res, next) {
+app.get("/api/path", (req, res) => {
+    res.json(
+        [
+            {"id": 0, "name": "Физ. лицо"},
+            {"id": 1, "name": "Юр. лицо"}
+        ]
+    )
+});
+
+app.get("/test/:uuid", function (req, res, next) {
     next();
 }, (req, res) => {
-    res.json({
-        urlParams: req.params.regionCode,
-        birthday: '20.02.1988',
-        category: "INDIVIDUAL",
-        city: 'Собачья нора',
-        email: "mail@mail.mail",
-        surname: "Фамилия",
-        name: "Имя",
-        patronymic: "Отчество",
-        phone: '9296816253',
-        status: "CHILDREN",
-    })
+    setTimeout(() => {
+        res.json({
+            "id": "1",
+            "name": "1",
+            "rate": "ratePlanBillingId",
+            "segment": {"id": 0, "name": "Физ. лицо"},
+            "rubric": {"id": 1, "name": "Ла ла ленд"},
+            "type": {"id": 1, "name": "Стандарт"},
+        })
+    }, 1500)
 });
 
 // Routes
